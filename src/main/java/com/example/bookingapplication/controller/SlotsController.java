@@ -34,11 +34,18 @@ public class SlotsController {
 		this.mapper = mapper;
 	}
 
-	@GetMapping
-	public ResponseEntity<BookingResponse<TimeSlotDto>> getAllAvailableSlots() {
+	@GetMapping("/2")
+	public ResponseEntity<BookingResponse<TimeSlotDto>> getAllAvailableSlots2() {
 		List<TimeSlotDto> list = timeSlotService.getAllAvailableTimeSlots().stream().map(x -> mapper.mapModelToDto(x))
 				.collect(Collectors.toList());
 		return new ResponseEntity<>(new BookingResponse<TimeSlotDto>(list), HttpStatus.OK);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<TimeSlotDto>> getAllAvailableSlots() {
+		List<TimeSlotDto> list = timeSlotService.getAllAvailableTimeSlots().stream().map(x -> mapper.mapModelToDto(x))
+				.collect(Collectors.toList());
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping
