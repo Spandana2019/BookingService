@@ -129,6 +129,7 @@ class ControllerTestCase {
 		// Act
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "application/json");
+		header.add("Authorization", "Basic "+"dGVzdDpwYXNz");
 		HttpEntity<BookingDto> httpEntity = new HttpEntity<>(bookingDto, header);
 		ResponseEntity<BookingDto> response = testRestTemplate
 				.postForEntity("http://localhost:" + PORT + "/api/bookings", httpEntity, BookingDto.class);
@@ -170,7 +171,7 @@ class ControllerTestCase {
 
 		// Act
 		// HttpHeaders headers = new HttpHeaders();
-		// headers.add("Accept", "application/json");
+		// header.add("Authorization", "Basic "+"dGVzdDpwYXNz");
 		// HttpEntity<String> entity = new HttpEntity<>(headers);
 		ResponseEntity<BookingResponse<BookingDto>> response = testRestTemplate.exchange(
 				"http://localhost:" + PORT + "/api/bookings", HttpMethod.GET, null,
